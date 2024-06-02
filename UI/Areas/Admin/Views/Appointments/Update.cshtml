@@ -1,0 +1,45 @@
+﻿@model AppointmentModel
+
+@{
+	var exists = Model != null && Model.AppointmentId != 0;
+	ViewBag.Title = (exists ? "Редактирование" : "Создание") + " Appointment";
+}
+
+<form asp-action="Update" asp-antiforgery="true" method="post">
+	<div class="row">
+		<div class="col-md-4 col-sm-6">
+			<div class="form-group">
+				<label asp-for="AppointmentId"></label>
+				<input type="text" asp-for="AppointmentId" class="form-control"/>
+				<span asp-validation-for="AppointmentId" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<div class="form-group">
+				<label asp-for="PatientId"></label>
+				<input type="text" asp-for="PatientId" class="form-control"/>
+				<span asp-validation-for="PatientId" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<div class="form-group">
+				<label asp-for="DoctorId"></label>
+				<input type="text" asp-for="DoctorId" class="form-control"/>
+				<span asp-validation-for="DoctorId" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<div class="form-group">
+				<label asp-for="AppointmentDate"></label>
+				<input type="text" asp-for="AppointmentDate" class="form-control dateTimePicker"/>
+				<span asp-validation-for="AppointmentDate" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<button class="btn btn-outline-primary" type="submit">@(exists ? "Сохранить" : "Добавить")</button>
+			<a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+		</div>
+	</div>
+</form>
